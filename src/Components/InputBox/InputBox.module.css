@@ -1,0 +1,13 @@
+.ip_box {
+  width: 100%;
+  display: flex;
+}
+
+.ip_box form {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  gap: 20px;
+}

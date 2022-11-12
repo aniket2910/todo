@@ -1,0 +1,17 @@
+.container {
+  max-width: 1260px;
+  margin: auto;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.heading {
+  font-size: 20px;
+  text-align: center;
+}
+
+.todo_app {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
