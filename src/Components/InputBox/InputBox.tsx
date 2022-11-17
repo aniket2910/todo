@@ -22,7 +22,7 @@ const InputBox: React.FC<HandleAdd> = ({ handleAdd }) => {
     });
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     handleAdd(todo);
     setTodo({
@@ -30,9 +30,12 @@ const InputBox: React.FC<HandleAdd> = ({ handleAdd }) => {
       todo: "",
     });
   };
+  const inputProps = {
+    "data-testid": "todo",
+  };
   return (
     <div className={styles.ip_box}>
-      <form onSubmit={handleSubmit}>
+      <form data-testid="todo_form" onSubmit={handleSubmit}>
         <TextField
           size="small"
           fullWidth
@@ -47,6 +50,7 @@ const InputBox: React.FC<HandleAdd> = ({ handleAdd }) => {
               color: "#fff",
             },
           }}
+          inputProps={inputProps}
           required
           onChange={handleChange}
           name="todo"
@@ -55,7 +59,12 @@ const InputBox: React.FC<HandleAdd> = ({ handleAdd }) => {
           variant="outlined"
           value={todo.todo}
         />
-        <Button variant="contained" size="small" type="submit">
+        <Button
+          variant="contained"
+          data-testid="submit"
+          size="small"
+          type="submit"
+        >
           Add
         </Button>
       </form>

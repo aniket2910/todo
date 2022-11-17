@@ -3,6 +3,7 @@ import InputBox from "../InputBox/InputBox";
 import { SingleTodoType, TodoType } from "../Types/Dashboard.types";
 import styles from "./Dashboard.module.css";
 import TodoList from "../TodoList/TodoList";
+import { notify } from "../../utilis/notify";
 
 const Dashboard = () => {
   const [todos, setTodos] = useState<SingleTodoType[]>([]);
@@ -25,6 +26,7 @@ const Dashboard = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(todo),
     });
+    notify("Todo Added Successfully...");
     getData();
   };
 
@@ -32,6 +34,7 @@ const Dashboard = () => {
     fetch(`http://localhost:8080/todos/${id}`, { method: "DELETE" })
       .then((r) => {
         getData();
+        notify("Todo Deleted Successfully...");
       })
       .catch((e) => {
         console.log(e);
@@ -39,15 +42,16 @@ const Dashboard = () => {
   };
 
   const handleEdit = (id: number, todo: SingleTodoType) => {
-    console.log(todo);
+    // console.log(todo);
     fetch(`http://localhost:8080/todos/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(todo),
     })
       .then((r) => {
-        console.log(r);
+        // console.log(r);
         getData();
+        notify("Todo Updated Successfully...");
       })
       .catch((e) => {
         console.log(e);
